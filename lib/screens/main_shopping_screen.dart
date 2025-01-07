@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shopapp/models/product.dart';
+import 'package:shopapp/widgets/grid_product_item.dart';
 
 class Mainshoppingscreen extends StatelessWidget {
   Mainshoppingscreen({super.key});
@@ -44,14 +45,32 @@ class Mainshoppingscreen extends StatelessWidget {
       id: '1006', 
       title: 'realme', 
       description: 'it is a phone', 
-      image: 'assets/phone_images/realme.jpg', 
+      image: 'assets/phone_images/realMe.jpg', 
       price: 7500,
     ),
   ];
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold();
+    return SafeArea(
+      child: Scaffold(
+        body: GridView.builder(
+          itemCount: availProducts.length,
+            itemBuilder: (context,index){
+              return GridProductItem(
+                id: availProducts[index].id, 
+                title: availProducts[index].title, 
+                image: availProducts[index].image
+              );
+            }, 
+            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 2,
+              childAspectRatio: 1/1,
+              crossAxisSpacing: 10,
+              mainAxisSpacing: 10,),
+        ) 
+      ),
+    );
   }
 }
 
