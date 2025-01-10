@@ -14,6 +14,22 @@ class GridProductItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return GridTile(
       child: Image.asset(image),
+      footer: GridTileBar(
+        title: Text(
+          title,
+          textAlign: TextAlign.center,
+        ),
+        backgroundColor: Colors.black45,
+        leading: IconButton(
+          onPressed: () {
+
+          }, 
+          icon: Icon(Icons.favorite),
+        ),
+        trailing: IconButton(
+          onPressed: () {}, 
+          icon: Icon(Icons.shopping_cart)),
+      ),
     );
   }
 }
