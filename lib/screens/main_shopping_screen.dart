@@ -54,7 +54,11 @@ class Mainshoppingscreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        appBar: AppBar(
+          title: Text('Phone Spaza'),
+        ),
         body: GridView.builder(
+          padding: EdgeInsets.all(10),
           itemCount: availProducts.length,
             itemBuilder: (context,index){
               return GridProductItem(
@@ -67,7 +71,7 @@ class Mainshoppingscreen extends StatelessWidget {
               crossAxisCount: 2,
               childAspectRatio: 1/1,
               crossAxisSpacing: 10,
-              mainAxisSpacing: 10,),
+              mainAxisSpacing: 30,),
         ) 
       ),
     );
