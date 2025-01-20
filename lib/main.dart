@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:shopapp/providers/products_provider.dart';
 import 'package:shopapp/screens/main_shopping_screen.dart';
 import 'package:shopapp/screens/product_detail_screen.dart';
+
+import 'models/product.dart';
 
 void main() {
   runApp(const MyApp());
@@ -17,15 +21,27 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.purple,
       ),
-      home: Mainshoppingscreen(),
+      home: MyHomePage(),
       //Navigation methods
       //To avoid errors while navigating
       //declare this in any important screens
       //Example: String const id = '/ProductDetailScreen'; 
       routes: {
-         ProductDetailScreen.id: (c) => ProductDetailScreen(),
+        ProductDetailScreen.id: (c) => ProductDetailScreen(),
         Mainshoppingscreen.id: (c) => Mainshoppingscreen(),
       },
     );
+  }
+}
+
+class MyHomePage extends StatelessWidget {
+  const MyHomePage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return ChangeNotifierProvider(
+      create: (BuildContext context) => Products(),
+    child: Mainshoppingscreen());
+
   }
 }

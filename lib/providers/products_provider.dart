@@ -10,7 +10,7 @@ class Products with ChangeNotifier {
   /// the data they are using
   ///notifylisteners();
 
-  List<Product> availProducts = [
+  List<Product> _availProducts = [
     Product(
       id: '1001', 
       title: 'Samsung', 
@@ -54,4 +54,16 @@ class Products with ChangeNotifier {
       price: 7500,
     ),
   ];
+
+  //getter function
+  List<Product> get availProducts => _availProducts;
+
+  /**void addProduct(value) {
+    _availProducts.add(value);
+    notifyListeners();
+  }*/
+
+  //Providing data to widgets that need data
+  
+
 }

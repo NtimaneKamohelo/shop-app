@@ -35,7 +35,10 @@ class GridProductItem extends StatelessWidget {
         //Make the images clickable
         child: GestureDetector(
           onTap: () {
-            Navigator.of(context).pushNamed(ProductDetailScreen.id);
+            Navigator.of(context).pushNamed(
+              ProductDetailScreen.id,
+              arguments: id,
+            );
           },
           child: Image.asset(image),
         ),
