@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:shopapp/models/product.dart';
+import 'package:shopapp/providers/product.dart';
 import 'package:shopapp/providers/products_provider.dart';
 import 'package:shopapp/widgets/grid_product_item.dart';
 
 class Mainshoppingscreen extends StatelessWidget {
 
-  static const id = '/ProductDetailScreen';
+  static const id = '/Mainshoppingscreen';
   Mainshoppingscreen({super.key});
 
 
@@ -38,13 +38,16 @@ class productsGrid extends StatelessWidget {
       padding: EdgeInsets.all(10),
       itemCount: availProducts.length,
         itemBuilder: (context,index){
-          return GridProductItem(
-            id: availProducts[index].id, 
-            title: availProducts[index].title, 
-            image: availProducts[index].image
+          return ChangeNotifierProvider<Product>(
+            create: (BuildContext context) => availProducts[index],
+            child: GridProductItem(
+              // id: availProducts[index].id, 
+              //title: availProducts[index].title, 
+              //image: availProducts[index].image
+            ),
           );
         }, 
-        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 2,
           childAspectRatio: 1/1,
           crossAxisSpacing: 10,

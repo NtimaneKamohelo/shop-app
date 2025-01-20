@@ -4,7 +4,7 @@ import 'package:shopapp/providers/products_provider.dart';
 import 'package:shopapp/screens/main_shopping_screen.dart';
 import 'package:shopapp/screens/product_detail_screen.dart';
 
-import 'models/product.dart';
+import 'providers/product.dart';
 
 void main() {
   runApp(const MyApp());
