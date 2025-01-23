@@ -27,7 +27,7 @@ class MyApp extends StatelessWidget {
       //declare this in any important screens
       //Example: String const id = '/ProductDetailScreen'; 
       routes: {
-        ProductDetailScreen.id: (c) => ProductDetailScreen(),
+        ProductDetailScreen.id: (c) => const ProductDetailScreen(),
         Mainshoppingscreen.id: (c) => Mainshoppingscreen(),
       },
     );
