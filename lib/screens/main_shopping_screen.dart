@@ -73,8 +73,9 @@ class productsGrid extends StatelessWidget {
       padding: EdgeInsets.all(10),
       itemCount: availProducts.length,
         itemBuilder: (context,index){
-          return ChangeNotifierProvider<Product>(
-            create: (BuildContext context) => availProducts[index],
+          return ChangeNotifierProvider<Product>.value(
+            value: availProducts[index],
+            //create: (BuildContext context) => availProducts[index],
             child: GridProductItem(
               // id: availProducts[index].id, 
               //title: availProducts[index].title, 
