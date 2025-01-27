@@ -4,12 +4,19 @@ import 'package:shopapp/providers/product.dart';
 import 'package:shopapp/providers/products_provider.dart';
 import 'package:shopapp/widgets/grid_product_item.dart';
 
-class Mainshoppingscreen extends StatelessWidget {
+class Mainshoppingscreen extends StatefulWidget {
 
   static const id = '/Mainshoppingscreen';
   Mainshoppingscreen({super.key});
 
+  
 
+  @override
+  State<Mainshoppingscreen> createState() => _MainshoppingscreenState();
+}
+
+class _MainshoppingscreenState extends State<Mainshoppingscreen> {
+  bool showFav = false;
 
   @override
   Widget build(BuildContext context) {
@@ -17,8 +24,33 @@ class Mainshoppingscreen extends StatelessWidget {
       child: Scaffold(
         appBar: AppBar(
           title: Text('Phone Spaza'),
+          actions: [
+            PopupMenuButton(
+              onSelected: (int selectedVal){
+                if(selectedVal == 0) {
+                  setState(() {
+                    showFav = true;
+                  });
+                }
+                if(selectedVal ==1) {
+                  setState(() {
+                    showFav = false;
+                  });
+                }
+              },
+              icon: Icon(Icons.more_vert),
+              itemBuilder: (_) {
+                return[
+                  PopupMenuItem(
+                    child: Text('Filter by favorite'), value: 0),
+                  PopupMenuItem(
+                    child: Text('remove filters'), value: 1),
+                ];
+              },
+            )
+          ],
         ),
-        body: productsGrid() 
+        body: productsGrid(isFav: showFav), 
       ),
     );
   }
@@ -26,13 +58,16 @@ class Mainshoppingscreen extends StatelessWidget {
 
 class productsGrid extends StatelessWidget {
   const productsGrid({
-    super.key,
+    super.key, required this.isFav,
   });
+
+  final bool isFav;
 
   @override
   Widget build(BuildContext context) {
     final productData = Provider.of<Products>(context);
-    final availProducts = productData.availProducts;
+    final availProducts = isFav ? productData.favoriteProducts : productData.availProducts;
+    //final availProducts = productData.availProducts;
 
     return GridView.builder(
       padding: EdgeInsets.all(10),
